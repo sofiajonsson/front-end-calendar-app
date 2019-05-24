@@ -3,8 +3,15 @@ import UserForm from "../UserForm"
 
 class User extends React.Component {
   state = {
-    currentUser: new User(),
+    newUser: {
+			name: '',
+			email: ''
+		}
   };
+
+	handleSubmit = () => {
+		{/*insert form submission Logic*/}
+	}
 
 	render(){
 		return
