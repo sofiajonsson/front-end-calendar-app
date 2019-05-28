@@ -6,7 +6,8 @@ import Events from '../components/Events';
 class Calendar extends React.Component {
   state = {
     currentMonth: new Date(),
-    selectedDate: new Date()
+    selectedDate: new Date(),
+    events: []
   };
 
   renderHeader() {
@@ -95,7 +96,6 @@ class Calendar extends React.Component {
       selectedDate: day
     });
   };
-
 
   nextMonth = () => {
     this.setState({
