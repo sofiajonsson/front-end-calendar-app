@@ -58,7 +58,7 @@ header {
 }
 
 header #logo {
-  font-size: 175%;
+  font-size: 150%;
   text-align: center;
   color: var(--main-color);
   line-height: 1;
@@ -228,4 +228,16 @@ main {
   flex-grow: 0;
   flex-basis: calc(100%/7);
   width: calc(100%/7);
+}
+
+
+.button {
+  background-color: white;
+  color: black;
+  border: 2px solid #217295;
+  margin: 0 auto; width: 144px;
+  text-align: center;
+  height: 4em;
+  font-size: 0.8em;
+  display: block;
 }

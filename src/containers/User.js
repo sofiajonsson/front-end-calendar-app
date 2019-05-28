@@ -1,22 +1,18 @@
 import React from "react";
-import UserForm from "../UserForm"
+import UserForm from "../components/UserForm"
 
 class User extends React.Component {
-  state = {
-    newUser: {
-			name: '',
-			email: ''
-		}
-  };
+
 
 	handleSubmit = () => {
 		{/*insert form submission Logic*/}
 	}
 
 	render(){
-		return
+		return(
+      <div> </div>
+    )
 
-	}
-
+}
 }
 export default User;
