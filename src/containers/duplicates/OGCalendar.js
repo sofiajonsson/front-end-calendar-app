@@ -3,9 +3,6 @@ import dateFns from "date-fns";
 import EventForm from "../components/EventForm"
 import Events from '../components/Events';
 
-import Button from 'react-bootstrap/Button'
-import ButtonToolbar from 'react-bootstrap/ButtonToolbar'
-
 class Calendar extends React.Component {
   state = {
     currentMonth: new Date(),
@@ -113,41 +110,11 @@ class Calendar extends React.Component {
   };
 
   render() {
-     let modalClose = () => this.setState({ modalShow: false })
     return (
-      <div>
-        <div className="MainContainer">
-          <header>
-            <div id="logo">
-              <span className="icon">date_range</span>
-              <span>
-                Mod 4 <b>calendar</b>
-              </span>
-            </div>
-          </header>
-          <div className="Event">
-          <ButtonToolbar>
-           <Button
-            className="button"
-             variant="primary"
-             onClick={() => this.setState({ modalShow: true })}
-           >
-             New Event
-           </Button>
-
-           <EventForm
-             show={this.state.modalShow}
-             onHide={modalClose}
-             
-           />
-          </ButtonToolbar>
-          </div>
-        </div>
-        <div className="calendar">
-          {this.renderHeader()}
-          {this.renderDays()}
-          {this.renderCells()}
-          </div>
+      <div className="calendar">
+        {this.renderHeader()}
+        {this.renderDays()}
+        {this.renderCells()}
       </div>
     );
   }

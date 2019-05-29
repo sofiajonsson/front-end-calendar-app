@@ -27,7 +27,7 @@ class Homepage extends Component {
 	    let email = this.email.current.value
 	    let password = this.password.current.value
 
-	    fetch('http://localhost:3000/users/login', {
+	    fetch('http://localhost:3000/users', {
 	      method: 'POST',
 	      headers: {
 	        'Content-Type': 'application/json'
