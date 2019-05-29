@@ -1,10 +1,15 @@
 import React from "react";
 import Modal from 'react-bootstrap/Modal'
 import Button from 'react-bootstrap/Button'
+
 class EventForm extends React.Component {
+  constructor(props){
+    super(props)
+    this.state={
+    }
+  }
 
-
-    render() {
+render() {
    return (
      <Modal
        {...this.props}
@@ -27,7 +32,7 @@ class EventForm extends React.Component {
               </label>
               <label>
                 Date:
-                <input type="text"  name="date" onChange={null} />
+                <input type="text"  defaultValue={this.props.date} name="date" onChange={null} />
               </label>
                 <input type="submit" value="Submit"/>
             </form>

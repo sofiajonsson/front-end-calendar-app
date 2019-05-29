@@ -68,6 +68,7 @@ class Calendar extends React.Component {
       for (let i = 0; i < 7; i++) {
         formattedDate = dateFns.format(day, dateFormat);
         const duplicateDay = day;
+        console.log(formattedDate)
         days.push(
           <div
             className={`col cell ${
@@ -77,13 +78,22 @@ class Calendar extends React.Component {
             }`}
             key={day}
             onClick={() => this.onDateClick(dateFns.parse(duplicateDay))}
+            id={`date ${formattedDate}`}
           >
+
+
             <span className="number">{formattedDate}</span>
             <span className="bg">{formattedDate}</span>
+            {this.state.events.filter(event => {
+              console.log(new Date(Date.parse(event.date)).getDate() == formattedDate)
+              return new Date(Date.parse(event.date)).getDate() == formattedDate
+            }).map(event => this.showEvent(event))}
           </div>
+
         );
         day = dateFns.addDays(day, 1);
       }
+
       rows.push(
         <div className="row" key={day}>
           {days}
@@ -128,12 +138,19 @@ class Calendar extends React.Component {
       body: JSON.stringify({
         title: title,
         description: description,
-        date: date
+        date: date,
+        user_id: 9
       })
     })
     .then(res => res.json())
-    .then(json => console.log(json))
+    .then(json => this.setState({events: [...this.state.events, json]}))
   }
+
+showEvent = (event) => {
+console.log(event);
+ return  <Events title={event.title} description={event.description} user={event.user_id}/>
+}
+
 
   render() {
      let modalClose = () => this.setState({ modalShow: false })
@@ -161,9 +178,8 @@ class Calendar extends React.Component {
            <EventForm
              show={this.state.modalShow}
              onHide={modalClose}
+             date={this.state.selectedDate}
              onSubmit={this.onSubmit}
-
-
            />
           </ButtonToolbar>
           </div>
