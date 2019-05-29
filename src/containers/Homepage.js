@@ -27,7 +27,7 @@ class Homepage extends Component {
 	    let email = this.email.current.value
 	    let password = this.password.current.value
 
-	    fetch('http://localhost:3000/api/v1/login', {
+	    fetch('http://localhost:3000/users/login', {
 	      method: 'POST',
 	      headers: {
 	        'Content-Type': 'application/json'
@@ -46,7 +46,7 @@ class Homepage extends Component {
 
 	  getProfile = () => {
 	    let token = this.getToken()
-	    fetch('http://localhost:3000/api/v1/profile', {
+	    fetch('http://localhost:3000/users/profile', {
 	      headers: {
 	        'Authorization': 'Bearer ' + token
 	      }
@@ -70,7 +70,8 @@ class Homepage extends Component {
 	    return (
 	      <div className="App">
 	        <div>
-	          user: {this.state.name || 'logged out'}
+	          User is Currently: {this.state.name || 'logged out'}
+						<h3>Please Login to Access Your Calendar</h3>
 	        </div>
 	        <form onSubmit={this.login}>
 	          <input type="text" placeholder="name" ref={this.name} />

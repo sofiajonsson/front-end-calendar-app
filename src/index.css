@@ -24,9 +24,9 @@
 /* VARIABLES */
 
 :root {
-  --main-color: #1E536A;
-  --text-color: #217295;
-  --text-color-light: #4366A4;
+  --main-color: #6D19AE;
+  --text-color: #6D19AE;
+  --text-color-light: #6D19AE;
   --border-color: #eee;
   --bg-color: #f9f9f9;
   --neutral-color: #fff;
@@ -176,7 +176,7 @@ main {
 
 .calendar .body .selected {
   border-left: 10px solid transparent;
-  border-image: linear-gradient(45deg, #7EBBD5 0%,#53cbf1 40%);
+  border-image: linear-gradient(45deg, #6D19AE 0%,#F0D792 40%);
   border-image-slice: 1;
 }
 
@@ -234,7 +234,7 @@ main {
 .button {
   background-color: white;
   color: black;
-  border: 2px solid #217295;
+  border: 2px solid #A16BCA;
   margin: 0 auto; width: 144px;
   text-align: center;
   height: 4em;

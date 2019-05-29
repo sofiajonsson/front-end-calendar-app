@@ -26,25 +26,6 @@ class MainContainer extends Component {
         modalShow: false
     }
   }
-  // addEvent = (event) => {
-  //   console.log("Adding Event");
-  //   if(!this.state.scheduled.find(clicked => clicked.id === event.id))
-  //   console.log("Event Form Rendered!");
-  //
-  // }
-  // newEventForm = (event) => {
-  //     event.preventDefault();
-  //
-  //     const newBook= {
-  //       title: event.target.elements.title.value,
-  //       author: event.target.elements.author.value,
-  //       img: event.target.elements.img.value
-  //     }
-  //     this.setState({
-  //       books: [newBook, ...this.state.books]
-  //     })
-  //     // console.log(this.state.book);
-  //   }
 
   render() {
      let modalClose = () => this.setState({ modalShow: false })

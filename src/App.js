@@ -7,22 +7,24 @@ import Calendar from './containers/Calendar';
 import User from './containers/User';
 import Homepage from './containers/Homepage'
 
+
 import EventForm from './components/EventForm';
 
 import Modal from 'react-bootstrap/Modal';
 import Button from 'react-bootstrap/Button'
 import ButtonToolbar from 'react-bootstrap/ButtonToolbar'
 
-
-
 class App extends Component {
+  constructor(props){
+    super(props)
+    this.state={};
+  }
 
   render() {
-
     return (
       <div className="App">
       <header className="App-header">
-        <h1>Welcome!</h1>
+        <h1>Welcome to Your Personal Calendar!</h1>
         <Router>
 
           <Route exact path="/" component={Homepage} />
@@ -30,10 +32,7 @@ class App extends Component {
 
         </Router>
       </header>
-
       </div>
-
-
     );
   }
 }
