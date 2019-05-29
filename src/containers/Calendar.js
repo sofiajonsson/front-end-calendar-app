@@ -96,8 +96,10 @@ class Calendar extends React.Component {
 
   onDateClick = day => {
     this.setState({
-      selectedDate: day
+      selectedDate: day,
+       modalShow: true
     });
+
   };
 
   nextMonth = () => {
@@ -111,6 +113,27 @@ class Calendar extends React.Component {
       currentMonth: dateFns.subMonths(this.state.currentMonth, 1)
     });
   };
+  onSubmit = (ev) => {
+    ev.preventDefault()
+
+    let title = ev.target.title.value
+    let description = ev.target.description.value
+    let date = this.state.selectedDate
+
+    fetch('http://localhost:3000/events', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify({
+        title: title,
+        description: description,
+        date: date
+      })
+    })
+    .then(res => res.json())
+    .then(json => console.log(json))
+  }
 
   render() {
      let modalClose = () => this.setState({ modalShow: false })
@@ -138,7 +161,9 @@ class Calendar extends React.Component {
            <EventForm
              show={this.state.modalShow}
              onHide={modalClose}
-             
+             onSubmit={this.onSubmit}
+
+
            />
           </ButtonToolbar>
           </div>

@@ -24,6 +24,7 @@ class Homepage extends Component {
 	    ev.preventDefault()
 
 	    let name = this.name.current.value
+			console.log(name);
 	    let email = this.email.current.value
 	    let password = this.password.current.value
 
