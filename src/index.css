@@ -24,9 +24,9 @@
 /* VARIABLES */
 
 :root {
-  --main-color: #6D19AE;
-  --text-color: #6D19AE;
-  --text-color-light: #6D19AE;
+  --main-color: #0d6839;
+  --text-color: #0d6839;
+  --text-color-light: teal;
   --border-color: #eee;
   --bg-color: #f9f9f9;
   --neutral-color: #fff;
@@ -60,7 +60,7 @@ header {
 header #logo {
   font-size: 150%;
   text-align: center;
-  color: var(--main-color);
+  color: teal;
   line-height: 1;
 }
 
@@ -112,6 +112,12 @@ main {
   text-align: right;
 }
 
+.courtesy {
+  display: block;
+  justify-content: center;
+  color: ;
+  text-align: center;
+}
 
 /* Calendar */
 
@@ -176,7 +182,7 @@ main {
 
 .calendar .body .selected {
   border-left: 10px solid transparent;
-  border-image: linear-gradient(45deg, #6D19AE 0%,#F0D792 40%);
+  border-image: linear-gradient(45deg, teal 0%,#F0D792 40%);
   border-image-slice: 1;
 }
 
@@ -229,7 +235,6 @@ main {
   flex-basis: calc(100%/7);
   width: calc(100%/7);
 }
-
 
 .button {
   background-color: white;

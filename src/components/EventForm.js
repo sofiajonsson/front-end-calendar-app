@@ -19,7 +19,7 @@ render() {
      >
 
        <Modal.Body>
-         <h4>Centered Modal</h4>
+         <h4>Create Event</h4>
          <div>
            <form onSubmit={this.handleSubmit}>
               <label>

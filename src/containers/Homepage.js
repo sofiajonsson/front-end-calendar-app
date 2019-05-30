@@ -47,20 +47,6 @@ class Homepage extends Component {
 	    })
 	  }
 
-	  // getProfile = () => {
-	  //   let token = this.getToken()
-	  //   fetch('http://localhost:3000/users/profile', {
-	  //     headers: {
-	  //       'Authorization': 'Bearer ' + token
-	  //     }
-	  //   })
-	  //   .then(res => res.json())
-	  //   .then(json => {
-	  //     console.log('profile:', json)
-	  //     this.setState({name: json.user.name})
-	  //   })
-	  // }
-
 	  saveToken(jwt) {
 	    localStorage.setItem('jwt', jwt)
 	  }

@@ -35,7 +35,6 @@ class App extends Component {
   // ** refer to bottom if not working
   setCurrentUser = (user) => {
     console.log("user", user);
-    debugger
     this.setState({ current_user: user, isLoggedIn: true, thisComp: "calendar"})
   }
 

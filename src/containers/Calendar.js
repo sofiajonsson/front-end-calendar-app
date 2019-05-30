@@ -2,6 +2,7 @@ import React from "react";
 import dateFns from "date-fns";
 import EventForm from "../components/EventForm"
 import Events from '../components/Events';
+import Homepage from './Homepage'
 
 import Button from 'react-bootstrap/Button'
 import ButtonToolbar from 'react-bootstrap/ButtonToolbar'
@@ -129,6 +130,7 @@ class Calendar extends React.Component {
     let title = ev.target.title.value
     let description = ev.target.description.value
     let date = this.state.selectedDate
+    let user = this.state.user_id
 
     fetch('http://localhost:3000/events', {
       method: 'POST',
@@ -139,7 +141,7 @@ class Calendar extends React.Component {
         title: title,
         description: description,
         date: date,
-        user_id: 9
+        user_id: 3
       })
     })
     .then(res => res.json())
@@ -167,13 +169,7 @@ console.log(event);
           </header>
           <div className="Event">
           <ButtonToolbar>
-           <Button
-            className="button"
-             variant="primary"
-             onClick={() => this.setState({ modalShow: true })}
-           >
-             New Event
-           </Button>
+          <h4 className="courtesy">Please Click on a Date this Month to create an Event</h4>
 
            <EventForm
              show={this.state.modalShow}
