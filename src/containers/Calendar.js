@@ -2,18 +2,18 @@ import React from "react";
 import dateFns from "date-fns";
 import EventForm from "../components/EventForm"
 import Events from '../components/Events';
-import Homepage from './Homepage'
-
-import Button from 'react-bootstrap/Button'
 import ButtonToolbar from 'react-bootstrap/ButtonToolbar'
 
 class Calendar extends React.Component {
-  state = {
-    currentMonth: new Date(),
-    selectedDate: new Date(),
-    events: []
-  };
-
+  constructor(props){
+    super(props)
+    console.log(props);
+    this.state = {
+      currentMonth: new Date(),
+      selectedDate: new Date(),
+      events: []
+    };
+  }
   renderHeader() {
     const dateFormat = "MMMM YYYY";
 
@@ -69,7 +69,7 @@ class Calendar extends React.Component {
       for (let i = 0; i < 7; i++) {
         formattedDate = dateFns.format(day, dateFormat);
         const duplicateDay = day;
-        console.log(formattedDate)
+        // console.log(formattedDate)
         days.push(
           <div
             className={`col cell ${
@@ -85,8 +85,9 @@ class Calendar extends React.Component {
 
             <span className="number">{formattedDate}</span>
             <span className="bg">{formattedDate}</span>
+
             {this.state.events.filter(event => {
-              console.log(new Date(Date.parse(event.date)).getDate() == formattedDate)
+              // console.log(new Date(Date.parse(event.date)).getDate() == formattedDate)
               return new Date(Date.parse(event.date)).getDate() == formattedDate
             }).map(event => this.showEvent(event))}
           </div>
@@ -130,7 +131,9 @@ class Calendar extends React.Component {
     let title = ev.target.title.value
     let description = ev.target.description.value
     let date = this.state.selectedDate
-    let user = this.state.user_id
+    let user = this.props.currentUser
+    console.log(user);
+// console.log(props);
 
     fetch('http://localhost:3000/events', {
       method: 'POST',
@@ -141,16 +144,33 @@ class Calendar extends React.Component {
         title: title,
         description: description,
         date: date,
-        user_id: 3
+        user: this.props.currentUser
       })
     })
     .then(res => res.json())
     .then(json => this.setState({events: [...this.state.events, json]}))
+      ev.target.title.value = ""
+      ev.target.description.value=""
+      this.state.selectedDate=""
+      this.state.user_id=""
   }
 
+  removeEvent =(id)=> {
+    fetch('http://localhost:3000/events' + '/' + id, {
+      method: 'DELETE'
+    })
+    .then(res => res.json())
+  }
+
+
 showEvent = (event) => {
-console.log(event);
- return  <Events title={event.title} description={event.description} user={event.user_id}/>
+// console.log(event);
+ return  <Events
+            title={event.title}
+            description={event.description}
+            user={this.props.currentUser}
+
+            />
 }
 
 
@@ -161,9 +181,10 @@ console.log(event);
         <div className="MainContainer">
           <header>
             <div id="logo">
-              <span className="icon">date_range</span>
+              <span className="icon">public</span>
               <span>
                 Mod 4 <b>calendar</b>
+                <span className="icon">public</span>
               </span>
             </div>
           </header>

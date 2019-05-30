@@ -1,9 +1,4 @@
 import React, { Component } from 'react';
-import {Link} from 'react-router-dom'
-import Form from 'react-bootstrap/Form'
-import Button from 'react-bootstrap/Button'
-import Bootstrap from "react-bootstrap";
-import Calendar from "./Calendar";
 
 class Homepage extends Component {
 	  state = {
@@ -16,9 +11,9 @@ class Homepage extends Component {
 	    this.email = React.createRef()
 	    this.password = React.createRef()
 
-	    if (this.getToken()) {
-	      this.getProfile()
-	    }
+	    // if (this.getToken()) {
+	    //   this.getProfile()
+	    // }
 	  }
 //login feature goes up to App.js (through setting currentUser)
 	  login = (ev) => {
@@ -29,7 +24,7 @@ class Homepage extends Component {
 	    let email = this.email.current.value
 	    let password = this.password.current.value
 
-	    fetch('http://localhost:3000/users', {
+	    fetch('http://localhost:3000/login', {
 	      method: 'POST',
 	      headers: {
 	        'Content-Type': 'application/json'
@@ -38,7 +33,7 @@ class Homepage extends Component {
 	    })
 	    .then(res => res.json())
 	    .then(json => {
-	      // console.log('login:', json)
+	      console.log('login:', json)
 				this.props.setCurrentUser(json)
 	      if (json && json.jwt) {
 	        this.saveToken(json.jwt)
@@ -62,12 +57,17 @@ class Homepage extends Component {
 	          User is Currently: {this.state.name || 'logged out'}
 						<h3>Please Login to Access Your Calendar</h3>
 	        </div>
+					<div className="Login">
 	        <form onSubmit={this.login}>
 	          <input type="text" placeholder="name" ref={this.name} />
+						<br></br>
 	          <input type="text" placeholder="email" ref={this.email} />
+						<br></br>
 	          <input type="password" placeholder="password" ref={this.password} />
+						<br></br>
 	          <input type="submit" />
 	        </form>
+					</div>
 	      </div>
 	    );
 	  }

@@ -1,15 +1,15 @@
 import React from "react";
-
+import Calendar from "../containers/Calendar"
 const Events = props => {
 console.log(props);
 	return(
 	<div>
 		<ul>
-			{props.user}
-			{props.title}
 			<li>
-			{props.description}
+			<h3>{props.title}</h3>
+			<p>{props.description}</p>
 			</li>
+			<button>Delete</button>
 		</ul>
 	 </div>
  )

@@ -1,5 +1,5 @@
 
-@import url(https://fonts.googleapis.com/css?family=Open+Sans:300,400,700);
+@import url(https://fonts.googleapis.com/css?family=Raleway&display=swap);
 @import url(https://fonts.googleapis.com/icon?family=Material+Icons);
 
 .icon {
@@ -24,14 +24,13 @@
 /* VARIABLES */
 
 :root {
-  --main-color: #0d6839;
-  --text-color: #0d6839;
+  --main-color: teal;
+  --text-color: #e2a963;
   --text-color-light: teal;
   --border-color: #eee;
   --bg-color: #f9f9f9;
   --neutral-color: #fff;
 }
-
 
 /* GENERAL */
 

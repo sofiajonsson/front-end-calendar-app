@@ -1,11 +1,7 @@
 import React, { Component } from "react";
-import {BrowserRouter as Router, Route, Link, NavLink} from 'react-router-dom'
-import { withRouter } from "react-router";
-
 import Calendar from './containers/Calendar';
 import Homepage from './containers/Homepage'
 
-import EventForm from './components/EventForm';
 
 class App extends Component {
   constructor(props){
@@ -21,7 +17,7 @@ class App extends Component {
   displayThisPage = () => {
     switch(this.state.thisComp) {
       case "calendar":
-        return <Calendar changeDisplay={this.changeDisplay}/>;
+        return <Calendar changeDisplay={this.changeDisplay} currentUser={this.state.current_user}/>;
       default:
         return <Homepage changeDisplay={this.changeDisplay} setCurrentUser={this.setCurrentUser}/>;
     }
