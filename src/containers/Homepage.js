@@ -3,10 +3,11 @@ import {Link} from 'react-router-dom'
 import Form from 'react-bootstrap/Form'
 import Button from 'react-bootstrap/Button'
 import Bootstrap from "react-bootstrap";
+import Calendar from "./Calendar";
 
 class Homepage extends Component {
 	  state = {
-	    username: ''
+	    name: ''
 	  }
 
 	  constructor() {
@@ -19,7 +20,7 @@ class Homepage extends Component {
 	      this.getProfile()
 	    }
 	  }
-
+//login feature goes up to App.js (through setting currentUser)
 	  login = (ev) => {
 	    ev.preventDefault()
 
@@ -37,27 +38,28 @@ class Homepage extends Component {
 	    })
 	    .then(res => res.json())
 	    .then(json => {
-	      console.log('login:', json)
+	      // console.log('login:', json)
+				this.props.setCurrentUser(json)
 	      if (json && json.jwt) {
 	        this.saveToken(json.jwt)
-	        this.getProfile()
+	        this.props.setCurrentUser(json)
 	      }
 	    })
 	  }
 
-	  getProfile = () => {
-	    let token = this.getToken()
-	    fetch('http://localhost:3000/users/profile', {
-	      headers: {
-	        'Authorization': 'Bearer ' + token
-	      }
-	    })
-	    .then(res => res.json())
-	    .then(json => {
-	      console.log('profile:', json)
-	      this.setState({name: json.user.name})
-	    })
-	  }
+	  // getProfile = () => {
+	  //   let token = this.getToken()
+	  //   fetch('http://localhost:3000/users/profile', {
+	  //     headers: {
+	  //       'Authorization': 'Bearer ' + token
+	  //     }
+	  //   })
+	  //   .then(res => res.json())
+	  //   .then(json => {
+	  //     console.log('profile:', json)
+	  //     this.setState({name: json.user.name})
+	  //   })
+	  // }
 
 	  saveToken(jwt) {
 	    localStorage.setItem('jwt', jwt)
