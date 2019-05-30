@@ -9,7 +9,6 @@ console.log(props);
 			<h3>{props.title}</h3>
 			<p>{props.description}</p>
 			</li>
-			<button>Delete</button>
 		</ul>
 	 </div>
  )

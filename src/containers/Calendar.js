@@ -132,7 +132,9 @@ class Calendar extends React.Component {
     let description = ev.target.description.value
     let date = this.state.selectedDate
     let user = this.props.currentUser
-    console.log(user);
+      let user_id = user.user.id
+      console.log(user_id);
+    // debugger
 // console.log(props);
 
     fetch('http://localhost:3000/events', {
@@ -144,10 +146,11 @@ class Calendar extends React.Component {
         title: title,
         description: description,
         date: date,
-        user: this.props.currentUser
+        user_id: user_id
       })
     })
     .then(res => res.json())
+    // .then(json => console.log(json))
     .then(json => this.setState({events: [...this.state.events, json]}))
       ev.target.title.value = ""
       ev.target.description.value=""
@@ -165,12 +168,24 @@ class Calendar extends React.Component {
 
 showEvent = (event) => {
 // console.log(event);
+  this.getEvents()
  return  <Events
             title={event.title}
             description={event.description}
-            user={this.props.currentUser}
-
+            user={this.props.currentUser.user.id}
             />
+}
+
+getEvents =() => {
+  fetch('http://localhost:3000/events', {
+    method: 'GET',
+    headers: {
+      'Content-Type': 'application/json',
+      'Authorization': 'Bearer ' + localStorage.getItem('jwt')
+    },
+  })
+  .then(res => res.json())
+  .then(json => console.log(json))
 }
 
 
