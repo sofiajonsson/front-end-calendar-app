@@ -1,7 +1,7 @@
 import React from "react";
 import dateFns from "date-fns";
 import EventForm from "../components/EventForm"
-import Events from '../components/Events';
+import Event from '../components/Event';
 import ButtonToolbar from 'react-bootstrap/ButtonToolbar'
 
 class Calendar extends React.Component {
@@ -13,6 +13,7 @@ class Calendar extends React.Component {
       selectedDate: new Date(),
       events: []
     };
+    this.getEvents()
   }
   renderHeader() {
     const dateFormat = "MMMM YYYY";
@@ -86,7 +87,7 @@ class Calendar extends React.Component {
             <span className="number">{formattedDate}</span>
             <span className="bg">{formattedDate}</span>
 
-            {this.state.events.filter(event => {
+            {this.state.events && this.state.events.filter(event => {
               // console.log(new Date(Date.parse(event.date)).getDate() == formattedDate)
               return new Date(Date.parse(event.date)).getDate() == formattedDate
             }).map(event => this.showEvent(event))}
@@ -131,9 +132,9 @@ class Calendar extends React.Component {
     let title = ev.target.title.value
     let description = ev.target.description.value
     let date = this.state.selectedDate
-    let user = this.props.currentUser
-      let user_id = user.user.id
-      console.log(user_id);
+    // let user = this.props.currentUser
+    //   let user_id = user.user.id
+      // console.log(user_id);
     // debugger
 // console.log(props);
 
@@ -146,7 +147,7 @@ class Calendar extends React.Component {
         title: title,
         description: description,
         date: date,
-        user_id: user_id
+        // user_id: user_id
       })
     })
     .then(res => res.json())
@@ -155,7 +156,7 @@ class Calendar extends React.Component {
       ev.target.title.value = ""
       ev.target.description.value=""
       this.state.selectedDate=""
-      this.state.user_id=""
+
   }
 
   removeEvent =(id)=> {
@@ -167,13 +168,10 @@ class Calendar extends React.Component {
 
 
 showEvent = (event) => {
-// console.log(event);
-  this.getEvents()
- return  <Events
-            title={event.title}
-            description={event.description}
-            user={this.props.currentUser.user.id}
-            />
+ return  <Event
+            event={event}
+            user={this.props.currentUser.user_id}
+          />
 }
 
 getEvents =() => {
@@ -185,9 +183,13 @@ getEvents =() => {
     },
   })
   .then(res => res.json())
-  .then(json => console.log(json))
+  .then(json => {
+    console.log('events', json)
+    // this.setState({
+    //   events: json
+    // })
+  })
 }
-
 
   render() {
      let modalClose = () => this.setState({ modalShow: false })
@@ -198,7 +200,7 @@ getEvents =() => {
             <div id="logo">
               <span className="icon">public</span>
               <span>
-                Mod 4 <b>calendar</b>
+                Monthly <b>Lineup</b>
                 <span className="icon">public</span>
               </span>
             </div>

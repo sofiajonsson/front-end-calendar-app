@@ -6,10 +6,18 @@ import Homepage from './containers/Homepage'
 class App extends Component {
   constructor(props){
     super(props)
+
+    let current_user = this.getCurrentUser()
+    let isLoggedIn = !!(current_user !== null && current_user.user_id)
+    let thisComp = ''
+    if (isLoggedIn) {
+      thisComp = 'calendar'
+    }
+
     this.state={
-      thisComp: '',
-      current_user: {},
-      isLoggedIn: false,
+      thisComp,
+      current_user,
+      isLoggedIn
     };
   }
 
@@ -34,12 +42,19 @@ class App extends Component {
     this.setState({ current_user: user, isLoggedIn: true, thisComp: "calendar"})
   }
 
+  getCurrentUser = () => {
+    if (localStorage.jwt === undefined) return null
+    let payload = localStorage.jwt.split('.')[1]
+    let userInfo = atob(payload)
+    let user = JSON.parse(userInfo)
+    return user
+  }
+
   render() {
     return (
       <div className="App">
       <header className="App-header">
       {this.displayThisPage()}
-
       </header>
       </div>
     );
